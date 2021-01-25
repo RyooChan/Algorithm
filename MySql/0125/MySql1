@@ -1,0 +1,19 @@
+/*
+CARD_USAGES테이블은 어느 회사원의 카드 사용 내역을 담은 테이블입니다. CARD_USAGES 테이블의 구조는 다음과 같으며, ID, CREATED_AT, CATEGORY, AMOUNT, MERCHANT_ID 는 각각 아이디, 사용일, 구분(0이면 결제 1이면 취소), 금액, 결제 가맹점 아이디를 나타냅니다.
+
+NAME	TYPE
+ID	INT
+CREATED_AT	DATETIME
+CATEGORY	INT
+AMOUNT	INT
+MERCHANT_ID	INT
+
+문제
+2018년 6월부터 2018년 12월까지, 이 회사원이 월별 결제 건수와 사용 금액을 조회하는 SQL 문을 작성해주세요. 이때 취소 내역은 결제 건수에 포함하지 않으며, 결과는 월순으로 보여야 합니다.
+*/
+
+#풀이
+SELECT MONTH(CREATED_AT) AS '월', COUNT(case when category = '0' then 1 end) AS '결제 건수',  SUM(amount) AS '사용 금액'
+FROM card_usages 
+WHERE YEAR(created_at)=2018 and MONTH(created_at) >= 6 
+GROUP BY MONTH(CREATED_AT)
