@@ -37,7 +37,7 @@ crane_game_104.jpg
 
 
 
-# 풀이
+// 풀이
 import java.util.Stack;
 
 class Solution {
