@@ -29,7 +29,7 @@ numbers	result
 따라서 [2,5,7,9,12] 를 return 해야 합니다.
 */
 
-# 풀이
+// 풀이
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.TreeSet;
