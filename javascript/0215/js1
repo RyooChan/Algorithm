@@ -12,11 +12,28 @@ a234	false
 */
 
 // 풀이
-
 function solution(s) {
-    var answer = true;
+    let answer = true;
     
-    answer = !isNaN(s);
+    if((s.length===4 || s.length===6) && (s == parseInt(s)))
+        answer = true;
+    else
+        answer = false;
     
     return answer;
 }
+
+//틀린 풀이
+/*
+function solution(s) {
+    var answer = true;
+    
+    if((s.length===4 || s.length===6) && !isNaN(s))
+        answer = true;
+    else
+        answer = false;
+    
+    return answer;
+}
+*/
+//isNaN을 사용해서 풀었는데 풀려서 확인해보니 11번 테스트케이스에서 e가 들어와서 지수로 받는것 같다. 문제가 별로인듯..
