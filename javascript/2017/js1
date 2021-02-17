@@ -28,6 +28,7 @@ function solution(number, k) {
         var now = number[i]; 
         
         // stack에 들어가 있는 숫자가 현재 숫자보다 작은 경우 바꾸어 넣어준다.
+        // 가장 큰 수가 맨 앞에 오도록 진행한다.
         while (k > 0 && stack[stack.length - 1] < now) 
         {
             stack.pop();
