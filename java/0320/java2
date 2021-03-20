@@ -1,0 +1,120 @@
+/*
+행렬 성공분류
+시간 제한	메모리 제한	제출	정답	맞은 사람	정답 비율
+2 초	128 MB	10341	3984	3190	39.180%
+문제
+0과 1로만 이루어진 행렬 A와 행렬 B가 있다. 이때, 행렬 A를 행렬 B로 바꾸는데 필요한 연산의 횟수의 최솟값을 구하는 프로그램을 작성하시오.
+
+행렬을 변환하는 연산은 어떤 3*3크기의 부분 행렬에 있는 모든 원소를 뒤집는 것이다. (0 -> 1, 1 -> 0)
+
+입력
+첫째 줄에 행렬의 크기 N M이 주어진다. N과 M은 50보다 작거나 같은 자연수이다. 둘째 줄부터 N개의 줄에는 행렬 A가 주어지고, 그 다음줄부터 N개의 줄에는 행렬 B가 주어진다.
+
+출력
+첫째 줄에 문제의 정답을 출력한다. 만약 A를 B로 바꿀 수 없다면 -1을 출력한다.
+
+예제 입력 1 
+3 4
+0000
+0010
+0000
+1001
+1011
+1001
+예제 출력 1 
+2
+*/
+
+
+// 풀이
+package jva;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.*;
+import java.io.IOException; 
+public class ggee {	
+	public static void main(String[] args) throws IOException {
+		//---------ㅇ
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+        //------ 행렬 입력 초기값 입력-----
+		String first = br.readLine();
+		StringTokenizer st = new StringTokenizer(first);
+
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+		//---------------------------
+		// 1번행렬
+		int A[][] = new int[N][M];
+		// 2번행렬
+		int B[][] = new int[N][M];
+		// 두 행렬을 비교해서 바꿔야하는 값을 적은 compare
+		int compare[][] = new int[N][M];
+		// 정답
+		int ans = 0;
+		
+		// 1번행렬에 모든 값들을 넣는다.
+		for(int i=0; i<N; i++)
+		{
+			String Ain = br.readLine();
+			for(int j=0; j<M; j++)
+				A[i][j] = Character.getNumericValue(Ain.charAt(j));
+		}
+		
+		// 2번행렬에 모든 값들을 넣는다.
+		for(int i=0; i<N; i++)
+		{
+			String Bin = br.readLine();
+			for(int j=0; j<M; j++)
+				B[i][j] = Character.getNumericValue(Bin.charAt(j));
+		}
+		
+		// 1번행렬과 2번행렬을 비교하여 값이 다른 경우 -1, 같은 경우 1로 저장한다.
+		for(int i=0; i<N; i++)
+		{
+			for(int j=0; j<M; j++)
+			{
+				if(A[i][j] != B[i][j])
+					compare[i][j] = -1;
+				else
+					compare[i][j] = 1;
+			}
+		}
+		
+		// 3x3행렬로 구분하기 때문에 비교 개수는 왼쪽 위 꼭짓점 기준으로 만들어지는 삼각형이 N-2, M-2까지 가면 된다.
+		for(int i=0; i<N-2; i++)
+		{
+			for(int j=0; j<M-2; j++)
+			{
+				// 만약 기준 위치(왼쪽 위 꼭짓점)에서 두 배열이 다른 경우(-1) 뒤집어 준다.
+				if(compare[i][j] == -1)
+				{
+					ans++;
+					// 그곳부터 3개에 해당하는 것을 뒤집어 준다.
+					for(int k=i; k<i+3; k++)
+					{
+						for(int l=j; l<j+3; l++)
+						{
+							compare[k][l] *= (-1);
+						}
+					}
+				}
+			}
+		}
+		
+		// 모두 뒤집었는데 다른 부분이 있으면 -1을 입력받는다.
+		for(int i=0; i<N; i++)
+			for(int j=0; j<M; j++)
+				if(compare[i][j] == -1) {
+					ans = -1;
+					break;
+				}
+		
+		System.out.println(ans);
+		
+	}
+
+}
