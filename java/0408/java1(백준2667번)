@@ -1,0 +1,80 @@
+
+
+// 풀이
+import java.util.*;
+
+public class Main{
+    static public char[][] house;
+    
+    // 현재 위치 기준 위, 아래, 오른쪽, 왼쪽을 찾기 위한 x y 값들이다.
+    static public int[] x = {-1,0,1,0};
+    static public int[] y = {0,1,0,-1};
+    
+    // 한번 찾은 장소를 체크한다.
+    static public int[][] check;
+    // 찾은 아파트 값
+    static public int cnt =0;
+    static public int N;
+    // 단지별 값들이다.
+    static public ArrayList<Integer> houseNum = new ArrayList<Integer>();
+    public static void main(String[] args){
+        // ----------- 입력 ------------------------------------
+        Scanner sc = new Scanner(System.in);
+        N = Integer.parseInt(sc.nextLine());
+        house = new char[N][N];
+        check = new int[N][N];
+        String temp;
+ 
+        for(int i=0; i<N; i++){
+            temp = sc.nextLine();
+            for(int j=0; j<N; j++){
+                house[i][j] = temp.charAt(j);
+            }
+        }
+        //-----------------------------------------------------------------
+ 
+        for(int i=0; i<N ; i++){
+            for(int j=0; j<N; j++){
+                // 현재 위치에 아파트가 존재하고, 방문하지 않은 장소일 때
+                if(house[i][j] =='1' && check[i][j] == 0){
+                    // 아파트의 개수를 늘려주고 방문했다는 표시를 해준 뒤 dfs를 진행한다.
+                    cnt = 1;
+                    check[i][j] = 1;
+                    dfs(i,j);
+                    houseNum.add(cnt);
+                }
+                    
+            }
+        }
+ 
+        Collections.sort(houseNum);
+ 
+        System.out.println(houseNum.size());
+        for(int i=0; i<houseNum.size(); i++){
+            System.out.println(houseNum.get(i));
+        }
+ 
+ 
+    }
+    
+ 
+    static public void dfs(int i, int j){
+        // 상하좌우를 확인한다.
+        for(int k=0; k<4; k++){
+            int ni = i + x[k];
+            int nj = j + y[k];
+            // 그리고 해당 상하좌우가 배열을 벗어나지 않았을 때
+            if(ni>=0 && ni<N && nj >=0 && nj<N){
+                // 추가로 그 위치를 방문하지 않았을 때
+                if(check[ni][nj]==0 && house[ni][nj] == '1'){
+                    // 확인시켜 주고 단지수를 늘려준다.
+                    check[ni][nj] = 1;
+                    cnt++;
+                    // 다시 상하좌우를 dfs를 돌려주면 나의 위치 기준으로 다른 아파트가 있는지 확인 가능하다.
+                    dfs(ni, nj);
+                }
+            }
+        }
+ 
+    }
+}
