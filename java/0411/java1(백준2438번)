@@ -1,3 +1,7 @@
+// 별찍기
+
+
+// 풀이
 import java.util.*;
 
 public class Main {	
@@ -17,6 +21,3 @@ public class Main {
 	
 	
 }
-
-
-//별찍기.
