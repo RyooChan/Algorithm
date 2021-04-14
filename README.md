@@ -12,3 +12,7 @@ MySql 문제 프로그래머스 전부 풀었음.
 # 0215
 javascript로 다시 풀기로 함.
 java공부보다 javascript공부를 우선해서 진행하기로 함. frontend공부를 하기 위함.
+
+# 0215
+java로 다시 돌아옴.
+백엔드 공부를 위해 java공부를 선행하기로 함.
