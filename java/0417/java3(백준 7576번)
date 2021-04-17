@@ -1,0 +1,102 @@
+
+
+// 풀이
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+	
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		String XYin[] = br.readLine().split(" ");
+		int X = Integer.parseInt(XYin[1]);
+		int Y = Integer.parseInt(XYin[0]);
+		
+    // 좌우(X) 상하(Y) 확인용
+		int Xmove[] = {-1, 1, 0, 0};
+		int Ymove[] = {0, 0, -1, 1};
+    // 토마토는 여러 곳에서 익어간다. 
+    // A장소, B장소에 익은 토마토가 위치한다면, A와 B가 하루에 같이 익고, 그 주변도 익는 데에 하루가 필요하다.
+    // before에는 A장소에서 익은 토마토의 개수와 B장소에서 익은 토마토의 개수를 더해준다.
+    // after에는 해당 토마토들을 더해서 하루에 익는 토마토의 개수를 세 준다.
+    
+    // ex) A->2개의 토마토가 익음, B-> 3개의 토마토가 익음    ====> before = 5
+    // ex) 다음날, before은 0, after = before(5개)
+    // 그리고 queue에서 스택을 하나씩 뺄 때 마다 after를 빼주고, 토마토가 익을 때 마다 before를 증가시키면 될것이다.
+		int before = 0;
+		int after;
+    // 날짜는 after이 0이 될 때에 하나씩 증가시켜 준다.
+		int days = 0;
+
+    // 토마토의 위치를 구해준다.
+		int tomatos[][] = new int[X][Y];
+    // 각각 토마토의 X축, Y축을 저장할 것들이다.
+		Queue<Integer> ripeX = new LinkedList<>();
+		Queue<Integer> ripeY = new LinkedList<>();
+	
+    // 토마토를 입력받는다
+		for(int i=0; i<X; i++){
+			String temp[] = br.readLine().split(" ");
+			for(int j=0; j<Y; j++){
+				int t = Integer.parseInt(temp[j]);
+				tomatos[i][j] = t;
+        // 익은 토마토가 존재하면, 그만큼 하루에 before을 증가시켜 0번째 날에 익은 토마토의 개수를 세어 하루만에 익는 개수를 구하도록 해 준다.
+        // 익은 토마토의 위치를 더해 준다.
+				if(t==1) {
+					before++;
+					ripeX.add(i);
+					ripeY.add(j);
+				}
+			}
+		}
+		
+    // 위에서 하루에 익은 토마토의 개수를 구해 하루에 구할 위치들을 after에 넣어 준다.
+		after = before;
+    // before은 다시 사용해야 하므로 초기화
+		before = 0;
+		
+    // 전체 위치 토마토가 다 익거나, 장애물에 막혀 더이상 익을 토마토가 없을 까지
+		while(!ripeX.isEmpty() && !ripeY.isEmpty()) {
+      // 가장 먼저 after가 0이 되었다는 것은 전체 그날 주변을 익게 할 토마토가 다 사용되었다는 것이다. 이를 가장 먼저 실행하여 오늘의 토마토를 구해준다.
+			if(after==0) {
+        // 다음 날 익어야 하는 토마토의 개수 before을 after에 더해 주고 초기화, 하루에 익을 토마토가 다 익었으므로 days를 더해 준다.
+				after = before;
+				before = 0;
+				days++;
+			}	
+      // stack에서 하나의 값이 빠졌다는 것은 오늘 주변을 익게 할 토마토를 계산한다는 것이고, after을 하나 빼 주는 것이다.
+			after--;
+      // 현재 위치를 빼서 구해 준다.
+			int nowX = ripeX.poll();
+			int nowY = ripeY.poll();
+			for(int i=0; i<4; i++) {
+        // 현재 위치 기준 상하좌우로 이동 가능하고, 그곳의 토마토가 익지 않은 상태인 경우(0만 해당)
+				if(nowX+Xmove[i]>=0 && nowX+Xmove[i]<X && nowY+Ymove[i]>=0 && nowY+Ymove[i]<Y && tomatos[nowX+Xmove[i]][nowY+Ymove[i]]==0) {
+          // 이날 익는 토마토의 개수를 하나씩 before에서 추가해 준다.
+					before++;
+          // 익음
+					tomatos[nowX+Xmove[i]][nowY+Ymove[i]] = 1;
+          // 익은 토마토 위치 기억하기
+					ripeX.add(nowX+Xmove[i]);
+					ripeY.add(nowY+Ymove[i]);
+				}
+			}		
+		}
+		
+    // 끝까지 안익은 토마토가 있으면 -1을 return해야한다.
+		for(int i=0; i<X; i++) {
+			for(int j=0; j<Y; j++) {
+				if(tomatos[i][j]==0) {
+					days = -1;
+					break;
+				}
+			}
+		}
+		
+    // 값 출력
+		System.out.println(days);	
+	}
+ 
+}
