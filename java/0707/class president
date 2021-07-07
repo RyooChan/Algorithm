@@ -34,6 +34,7 @@ copy4
 */
 
 // 풀이
+// '한 번이라도' -> 같은반 한번이라도 됐으면 다시 카운트 안함.
 import java.util.*;
 
 public class Main{
