@@ -29,7 +29,7 @@
 938
 */
 
-// 풀이
+// 풀이 -> 디버깅 없이 품. 쉬운거 빨리 풀고 어려운거 할라고..
 import java.util.*;
  
 public class Main {
