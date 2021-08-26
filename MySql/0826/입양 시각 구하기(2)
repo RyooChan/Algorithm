@@ -1,0 +1,17 @@
+-- 코드를 입력하세요
+WITH RECURSIVE time_table AS (
+    SELECT 0 hour
+    UNION ALL
+    SELECT hour + 1 FROM time_table WHERE hour < 23
+) -- 0~23까지 만들어준다. 근데 이거 23과 같거나 그보다 작으면 hour+1까지 해서 24나온다. 주의할것
+
+SELECT hour as 'HOUR', COUNT(*)-1 as 'COUNT' -- 0도 세줘서 1빼줌
+FROM (
+    SELECT hour(DATETIME) AS hour FROM animal_outs  // union해줘서 만들어진 time_table에 맞춰 값들을 찾아준다.
+    UNION ALL
+    SELECT hour FROM time_table
+    ) VALID
+GROUP BY hour
+ORDER BY hour
+
+-- 이거 왜 안풀어져있지..
