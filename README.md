@@ -16,3 +16,7 @@ java공부보다 javascript공부를 우선해서 진행하기로 함. frontend�
 # 0215
 java로 다시 돌아옴.
 백엔드 공부를 위해 java공부를 선행하기로 함.
+
+# 0829
+추가된 sql 문제들 다 풀었다.
+java알고리즘 공부를 하면서 spring boot 공부를 하기로 함.
