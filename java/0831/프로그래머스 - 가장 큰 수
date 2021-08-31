@@ -61,6 +61,6 @@ class Solution {
         
 		if(answer.startsWith("0") && answer.endsWith("0")) answer = "0";  
         
-        return answer;
+        return answer;		// 어디서 많이 본 문제다~ 백준은 플래티넘 문제인데 여기는 level2임...
     }
 }
