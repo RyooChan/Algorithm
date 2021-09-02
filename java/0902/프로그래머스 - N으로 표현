@@ -1,0 +1,60 @@
+/*
+N으로 표현
+문제 설명
+아래와 같이 5와 사칙연산만으로 12를 표현할 수 있습니다.
+
+12 = 5 + 5 + (5 / 5) + (5 / 5)
+12 = 55 / 5 + 5 / 5
+12 = (55 + 5) / 5
+
+5를 사용한 횟수는 각각 6,5,4 입니다. 그리고 이중 가장 작은 경우는 4입니다.
+이처럼 숫자 N과 number가 주어질 때, N과 사칙연산만 사용해서 표현 할 수 있는 방법 중 N 사용횟수의 최솟값을 return 하도록 solution 함수를 작성하세요.
+
+제한사항
+N은 1 이상 9 이하입니다.
+number는 1 이상 32,000 이하입니다.
+수식에는 괄호와 사칙연산만 가능하며 나누기 연산에서 나머지는 무시합니다.
+최솟값이 8보다 크면 -1을 return 합니다.
+입출력 예
+N	number	return
+5	12	4
+2	11	3
+입출력 예 설명
+예제 #1
+문제에 나온 예와 같습니다.
+
+예제 #2
+11 = 22 / 2와 같이 2를 3번만 사용하여 표현할 수 있습니다.
+*/
+
+// 풀이
+class Solution {
+    public static int ans = 9; // 최대 횟수는 8이다. 그보다 1큰 9보다 작은 값이어야 된다.
+    public static boolean exist = false; // 답이 있으면 true
+    
+    public int solution(int N, int number) {
+        int answer = -1; 
+        
+        dfs(N, 0, 0, number);  // dfs를 통해 구현확인
+        
+        if(exist) answer = ans; // 답이 있으면 그걸 답으로 하고 8번안에 못구하면 -1로 가져감
+        return answer;
+    }
+    public static void dfs(int N, int cnt, int nowNum, int number){
+        if(cnt > ans) return; // 9보다 작거나 혹은 이미 존재하는 최소값보다 크면 더이상 진행할 필요가 없다.
+        if(nowNum == number){ // 원하는 값이면 <- 지금 cnt가 당연히 최소값이니까
+            ans = cnt; // 넣어주면 됨
+            return;
+        }
+        
+      int cal = N;  // N으로 값을 시작한다.
+    	for(int i = 0; i<8-cnt; i++ ) {  // 현재 수로부터 만들수 있는 값에서 계속 진행 ~ 만들어진 수에서부터~~~~ 이렇게 계속 진행한다.
+            dfs(N, cnt+1+i, nowNum+cal, number); 
+            dfs(N, cnt+1+i, nowNum-cal, number);
+            dfs(N, cnt+1+i, nowNum*cal, number);
+            dfs(N, cnt+1+i, nowNum/cal, number);
+        	
+        	cal = (cal*10)+N;   // 근데 NN NNN 이런것도 있을수가 있다. 여기서 많이 헤맴.
+    	}
+    }
+}
