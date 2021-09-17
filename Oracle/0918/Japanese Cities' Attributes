@@ -1,0 +1,8 @@
+SELECT        id
+            , name
+            , countrycode
+            , district
+            , population
+FROM        city
+WHERE       1 = 1
+AND         countrycode = 'JPN';
