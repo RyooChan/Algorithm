@@ -1,0 +1,23 @@
+SELECT      city, LENGTH(city)
+FROM        
+(
+    SELECT      city AS "CITY"
+                , LENGTH(city) AS "CITYLENGTH"
+    FROM        station
+    ORDER BY    LENGTH(city)
+                , city
+)
+WHERE       1=1
+AND         ROWNUM = 1;
+
+SELECT      city, LENGTH(city)
+FROM        
+(
+    SELECT      city AS "CITY"
+                , LENGTH(city) AS "CITYLENGTH"
+    FROM        station
+    ORDER BY    LENGTH(city) DESC
+                , city
+)
+WHERE       1=1
+AND         ROWNUM = 1;
