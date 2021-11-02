@@ -1,0 +1,23 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[] arr) {
+        int answer = 0;
+        
+        Arrays.sort(arr);
+        int max = arr[arr.length-1];
+        
+        int cnt = 1;
+        int num = 1;
+        while(true){
+            boolean check = true;
+            num = max * (cnt++);
+            for(int i : arr){
+                if(num%i!=0) check = false;
+            }
+            if(check) break;
+        }
+        
+        return num;
+    }
+}
