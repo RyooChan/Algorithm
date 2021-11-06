@@ -1,0 +1,17 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		String input = sc.next();
+		int ans = 0;
+		String num[] = input.split(",");
+		
+		for(String i : num) {
+			ans += Integer.parseInt(i);
+		}
+		
+		System.out.println(ans);
+	}
+}
