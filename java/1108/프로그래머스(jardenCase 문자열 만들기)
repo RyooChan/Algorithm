@@ -1,0 +1,22 @@
+import java.util.*;
+
+class Solution {
+    public String solution(String s) {
+        String answer = "";
+        StringBuffer sb = new StringBuffer();
+        
+        String toStrArr[] = s.toLowerCase().split("");
+        
+        boolean space = true;
+        for(String i : toStrArr){
+            if(" ".equals(i)) space = true;
+            else{
+                if(space) i = i.toUpperCase();
+                space = false;
+            }
+            sb.append(i);
+        } 
+        answer = sb.toString();
+        return answer;
+    }
+}
