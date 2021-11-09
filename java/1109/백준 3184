@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static int xMove[] = {-1, 1, 0, 0};
+	public static int yMove[] = {0, 0, -1, 1};
+	public static int xFrame;
+	public static int yFrame;
+	
+	public static char map[][];
+	public static boolean check[][];
+	
+	public static int locSheep = 0;
+	public static int locWolf = 0;
+	
+	public static int sheep = 0;
+	public static int wolf = 0;
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		xFrame = sc.nextInt();
+		yFrame = sc.nextInt();
+		map = new char[xFrame][yFrame];
+		check = new boolean[xFrame][yFrame];
+		
+		for(int i=0; i<xFrame; i++) {
+			String input = sc.next();
+			map[i] = input.toCharArray();
+		}
+		
+		for(int i=0; i<xFrame; i++) {
+			for(int j=0; j<yFrame; j++) {
+				if(check[i][j]) continue;
+				locSheep = 0;
+				locWolf = 0;
+				dfs(i, j);
+				if(locSheep > locWolf) sheep += locSheep;
+				else wolf += locWolf;
+			}
+		}
+		System.out.printf("%d %d", sheep, wolf);
+	}
+	public static void dfs(int x, int y) {
+		if(x<0 || x>=xFrame || y<0 || y>=yFrame) return;
+		if(check[x][y] || map[x][y] == '#') return;
+		check[x][y] = true;
+		
+		switch(map[x][y]) {
+			case 'o' : locSheep++;	break;
+			case 'v' : locWolf++;	break;
+			default : break;
+		}
+		
+		for(int i=0; i<4; i++) dfs(x+xMove[i], y+yMove[i]);
+	}
+}
+            
