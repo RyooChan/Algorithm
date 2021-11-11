@@ -1,0 +1,48 @@
+import java.util.*;
+
+class Solution {
+    public static int xMove[] = {-1, 1, 0, 0};
+    public static int yMove[] = {0, 0, -1, 1};
+    public static boolean check[][];
+    
+    public int solution(int[][] maps) {
+        int answer = -1;
+        int xFrame = maps.length;
+        int yFrame = maps[0].length;
+        check = new boolean[xFrame][yFrame];
+        
+        Queue<coor> move = new LinkedList<>();
+        move.add(new coor(0, 0, 1));
+        check[0][0] = true;
+        while(!move.isEmpty()){
+            coor coor = move.poll();
+            int x = coor.x;
+            int y = coor.y;
+            int cnt = coor.cnt;
+            for(int i=0; i<4; i++){
+                int xTo = x+xMove[i];
+                int yTo = y+yMove[i];
+                if(xTo<0 || xTo>=xFrame || yTo<0 || yTo>=yFrame) continue;
+                else if(check[xTo][yTo]) continue;
+                else if(maps[xTo][yTo]==0) continue;
+                check[xTo][yTo] = true;
+                move.add(new coor(xTo, yTo, cnt+1));
+            }
+            if(x==xFrame-1 && y==yFrame-1){
+                return cnt;
+            }
+        }
+        
+        return -1;
+    }
+}
+class coor{
+    int x;
+    int y;
+    int cnt;
+    coor(int x, int y, int cnt){
+        this.x = x;
+        this.y = y;
+        this.cnt = cnt;
+    }
+}
