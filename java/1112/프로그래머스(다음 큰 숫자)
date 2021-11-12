@@ -1,0 +1,25 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int n) {
+        int now = n;
+        String nToDecimal = Integer.toBinaryString(n);
+        int aim = 0;
+        
+        for(int i=0; i<nToDecimal.length(); i++){
+            if(nToDecimal.charAt(i)=='1')aim++;
+        }
+        
+        while(true){
+            String nowToDecimal = Integer.toBinaryString(++now);
+            int cnt = 0;
+            for(int i=0; i<nowToDecimal.length(); i++){
+                if(nowToDecimal.charAt(i)=='1')cnt++;
+            }
+            if(cnt==aim) break;
+        }
+        int answer = now;
+        return answer;
+        
+    }
+}
