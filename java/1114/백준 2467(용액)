@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int n = Integer.parseInt(br.readLine());
+		int[] arr = new int[n];
+		
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		for (int i = 0; i < n; i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
+		}
+		
+		int start = 0;
+		int end   = arr.length-1;
+		int sum = Math.abs(arr[start] + arr[end]);
+
+		int small = arr[start];
+		int big   = arr[end];
+		
+		while(start < end) {
+			int mid = arr[start] + arr[end];
+			int value = Math.abs(mid);
+			if(value<=sum) {
+				sum = value;
+				small = arr[start];
+				big = arr[end];
+			}
+			if(mid>0) end--;
+			else start++;
+		}
+		System.out.printf("%d %d", small, big);
+	}
+
+}
