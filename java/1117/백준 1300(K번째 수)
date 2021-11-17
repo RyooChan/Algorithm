@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		long N = sc.nextInt();
+		long K = sc.nextInt();
+		long ans = 0;
+		
+		long left = 1;
+		long right = N*N;
+		while(left<=right) {
+			long mid = (left+right)/2;
+			long cnt = 0;
+			for(int i=1; i<=N; i++) {
+				cnt += Math.min(N, mid/i);
+			}
+			if(cnt>=K) {
+				ans = mid;
+				right = mid-1;
+			}else {
+				left = mid+1;
+			}
+		}
+		System.out.println(ans);
+	}
+
+}
