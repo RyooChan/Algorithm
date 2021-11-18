@@ -1,0 +1,37 @@
+import java.util.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Main
+{
+	public static int N;
+	public static int arr[];
+	public static boolean check[];
+	public static void main (String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		N = sc.nextInt();
+		arr = new int[N+1];
+		check = new boolean[N+1];
+ 
+		for(int i=1; i<=N; i++){
+			check[i] = true;
+			dfs(i, 1);
+			check[i] = false;
+		}
+	}
+	public static void dfs(int num, int cnt){
+		arr[cnt] = num;
+		if(cnt==N){
+			for(int i=1; i<=N; i++){
+				System.out.print(arr[i] + " ");
+			}System.out.println();
+			return;
+		}
+		for(int i=1; i<=N; i++){
+			if(check[i]) continue;
+			check[i] = true;
+			dfs(i, cnt+1);
+			check[i] = false;
+		}
+	}
+}
