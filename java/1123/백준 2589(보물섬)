@@ -1,0 +1,71 @@
+import java.util.*;
+
+public class Main {
+	public static int distance = 0;
+	public static int xMove[] = {-1, 1, 0, 0};
+	public static int yMove[] = {0, 0, -1, 1};
+	public static char map[][];
+	public static boolean check[][];
+
+	public static int xFrame;
+	public static int yFrame;
+	public static int answer = 0;
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		xFrame = sc.nextInt();
+		yFrame = sc.nextInt();
+		map = new char[xFrame][yFrame];
+		for(int i=0; i<xFrame; i++) {
+			String input = sc.next();
+			map[i] = input.toCharArray();
+		}
+
+		for(int i=0; i<xFrame; i++) {
+			for(int j=0; j<yFrame; j++) {
+				if(map[i][j]=='L') {
+					check = new boolean[xFrame][yFrame];
+					check[i][j] = true;
+					bfs(i, j);
+				}
+			}
+		}
+		System.out.println(answer);
+
+	}
+	
+	public static void bfs(int startX, int startY) {
+		Queue<info> move = new LinkedList<>();
+		move.add(new info(startX, startY, 0));
+		
+		while(!move.isEmpty()) {
+			info info = move.poll();
+			int x = info.x;
+			int y = info.y;
+			int time = info.time;
+			answer = Math.max(answer,  time);
+
+			for(int i=0; i<4; i++) {
+				int toX = x+xMove[i];
+				int toY = y+yMove[i];
+				if(toX<0 || toX>=xFrame || toY<0 || toY>=yFrame) continue;
+				if(map[toX][toY]=='W' || check[toX][toY]) continue;
+				check[toX][toY] = true;
+				move.add(new info(toX, toY, time+1));
+			}
+		}
+		
+		
+	}
+}
+class info{
+	int x;
+	int y;
+	int time;
+	info(int x, int y, int time){
+		this.x = x;
+		this.y = y;
+		this.time = time;
+	}
+}
