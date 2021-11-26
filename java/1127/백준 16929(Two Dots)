@@ -1,0 +1,60 @@
+import java.util.*;
+
+public class Main {
+	public static int N;
+	public static int M;
+	
+	public static int xMove[] = {-1, 1, 0, 0};
+	public static int yMove[] = {0, 0, -1, 1};
+	public static char map[][];
+	public static boolean check[][];
+	
+	public static int xStart;
+	public static int yStart;
+	
+	public static String answer = "No";
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		N = sc.nextInt();
+		M = sc.nextInt();
+		
+		map = new char[N][M];
+		check = new boolean[N][M];
+
+		for(int i=0; i<N; i++) {
+			String input = sc.next();
+			for(int j=0; j<M; j++) map[i][j] = input.charAt(j);
+		}
+		
+		for(int i=0; i<N; i++) {
+			for(int j=0; j<M; j++) {
+				xStart = i;
+				yStart = j;
+				DFS(i, j, 1, map[i][j], map);
+			}
+		}
+		System.out.println(answer);
+	}
+	
+	public static void DFS(int x, int y, int cnt, char startChr, char map[][]) {
+		check[x][y] = true;
+		
+		for(int i=0; i<4; i++) {
+			int xTo = x+xMove[i];
+			int yTo = y+yMove[i];
+			if(xTo<0 || xTo>=N || yTo<0 || yTo>=M) continue;
+			if(xTo==xStart && yTo==yStart && cnt>=4) {
+				answer = "Yes";
+				return;
+			}
+			if(map[xTo][yTo]!=startChr || check[xTo][yTo]) continue;
+			DFS(xTo, yTo, cnt+1, startChr, map);
+		}
+		check[x][y] = false;
+	}
+}
+
+// 해설 https://hello-backend.tistory.com/75
