@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		long X = sc.nextInt();
+		long Y = sc.nextInt();
+		
+		long per = (long)Y*100/X;
+		if(per>=99) {
+			System.out.println(-1);
+			return;
+		}
+		
+		long left = 1;
+		long right = X;
+		
+		while(left<=right) {
+			long mid = (left+right)/2;
+			long rate = (long)(Y+mid)*100/(X+mid);
+			
+			if(rate>per) {
+				right = mid-1;
+			}else {
+				left = mid+1;
+			}
+		}
+		System.out.println(left);
+	}
+
+}
