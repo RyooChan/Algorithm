@@ -1,0 +1,34 @@
+import java.util.*;
+
+public class Main {
+	public static int A;
+	public static int B;
+	public static int C;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+
+		A = sc.nextInt();
+		B = sc.nextInt();
+		C = sc.nextInt();
+		
+		System.out.println(mul(B));
+				
+	}
+	public static long mul(int in) {
+		long num = 0;
+	
+		if(in==0) return 1;
+		
+		num = mul(in/2);
+		num = num*num%C;
+		
+		if(in%2==1) num *= A;
+		
+		return num%C;
+	}
+}
+
+
+// 풀이  https://hello-backend.tistory.com/86
