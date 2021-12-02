@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class Main {
+    public static int map[];
+    public static boolean check[];
+    public static PriorityQueue<Integer> pq; 
+    public static int N;
+    
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        
+        N = sc.nextInt();
+        map = new int[N+1];
+        check = new boolean[N+1];
+        
+        for(int i=1; i<=N; i++) map[i] = sc.nextInt();
+        
+        pq = new PriorityQueue<>();
+        for(int i=1; i<=N; i++){
+            check[i] = true;
+            DFS(i, i);
+            check[i] = false;
+        }
+        System.out.println(pq.size());
+        while(!pq.isEmpty()){
+            System.out.println(pq.poll());
+        }
+        
+    }
+    public static void DFS(int loc, int to){
+        if(!check[map[loc]]){
+            check[map[loc]] = true;
+            DFS(map[loc], to);
+            check[map[loc]] = false;
+        }
+        
+        if(map[loc] == to) pq.add(to);
+    }
+}
