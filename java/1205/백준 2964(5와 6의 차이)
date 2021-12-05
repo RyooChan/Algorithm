@@ -1,0 +1,29 @@
+package com.java.servlet;
+
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int max[] = new int[2];
+		int min[] = new int[2];
+		
+		for(int i=0; i<2; i++) {
+			String in = sc.next();
+			in = in.replace('5', '6');
+			max[i] = Integer.parseInt(in);
+			in = in.replace('6', '5');
+			min[i] = Integer.parseInt(in);
+		}
+		
+		int ans1 = 0;
+		int ans2 = 0;
+		for(int i=0; i<2; i++) {
+			ans1 += min[i];
+			ans2 += max[i];
+		}
+		System.out.printf("%d %d", ans1, ans2);
+	}
+}
