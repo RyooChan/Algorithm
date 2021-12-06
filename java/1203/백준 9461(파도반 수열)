@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int N = sc.nextInt();
+		for(int i=0; i<N; i++) {
+			int init = sc.nextInt();
+			int initial = Math.max(5,  init);
+			int map[] = new int[initial+1];
+			long length[] = new long[initial+1];
+			
+			length[1] = 1;
+			length[2] = 1;
+			length[3] = 1;
+			length[4] = 2;
+			length[5] = 2;
+			
+			for(int j=6; j<=init; j++) length[j] = length[j-1] + length[j-5];
+			
+			System.out.println(length[init]);
+		}
+		
+	}
+}
