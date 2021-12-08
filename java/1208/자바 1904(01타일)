@@ -1,0 +1,21 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int N = sc.nextInt();
+        int tileSize = Math.max(4, N);
+		long tiles[] = new long[tileSize+1];
+		
+		tiles[1] = 1;
+		tiles[2] = 2;
+		tiles[3] = 3;
+		
+		for(int i=4; i<=N; i++) {
+			tiles[i] = (tiles[i-1] + tiles[i-2])%15746;
+		}
+		System.out.println(tiles[N]%15746);		
+	}
+} 
