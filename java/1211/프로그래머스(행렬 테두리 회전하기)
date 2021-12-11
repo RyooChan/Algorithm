@@ -1,0 +1,59 @@
+class Solution {
+    public int[] solution(int rows, int columns, int[][] queries) {
+        int[] answer = new int[queries.length];
+        
+        int map[][] = new int[rows+15][columns+15];
+        int cnt = 0;
+        for(int i=1; i<rows+1; i++){
+            for(int j=1; j<columns+1; j++){
+                map[i][j] = ++cnt;
+            }
+        }
+        
+        for(int i=0; i<queries.length; i++){
+            int minVal = Integer.MAX_VALUE;
+            
+            int xStart = queries[i][1];
+            int xEnd   = queries[i][3];
+            int yStart = queries[i][0];
+            int yEnd   = queries[i][2];
+            
+            int locNum = map[yStart][xStart];
+            int temp = locNum;
+            
+            for(int j=xStart+1; j<=xEnd; j++){
+                minVal = Math.min(minVal, locNum);
+                locNum = map[yStart][j];
+                map[yStart][j] = temp;
+                temp = locNum;
+            }
+            
+            for(int j=yStart+1; j<=yEnd; j++){
+                minVal = Math.min(minVal, locNum);
+                locNum = map[j][xEnd];
+                map[j][xEnd] = temp;
+                temp = locNum;
+            }
+            
+            for(int j=xEnd-1; j>=xStart; j--){
+                minVal = Math.min(minVal, locNum);
+                locNum = map[yEnd][j];
+                map[yEnd][j] = temp;
+                temp = locNum;
+            }
+            
+            for(int j=yEnd-1; j>=yStart; j--){
+                minVal = Math.min(minVal, locNum);
+                locNum = map[j][xStart];
+                map[j][xStart] = temp;
+                temp = locNum;
+            }
+            minVal = Math.min(minVal, locNum);
+            
+            answer[i] = minVal;
+        }
+        return answer;
+    }
+}
+
+-- 해설 https://hello-backend.tistory.com/89
