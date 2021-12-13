@@ -1,0 +1,48 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		long x, y;
+		long Maxdis = 0;
+		long move;
+		long warp = 1;
+		boolean twice = false;
+		int T;
+		int count;
+		
+		T = sc.nextInt();
+		int output[] = new int[T];
+		
+		
+		for(int i=0; i<T; i++) {
+			x = sc.nextInt();
+			y = sc.nextInt();
+			move = y-x;
+			count = 0;
+			
+			while(Maxdis<move) {
+				Maxdis += warp;
+				
+				if(!twice)
+					twice = true;
+				else {
+					twice = false;
+					warp++;
+				}
+				count++;
+			}
+
+			Maxdis = 0;
+			warp = 1;
+			twice = false;
+			output[i] = count;
+		}
+		
+		for(int i=0; i<T; i++)
+			System.out.println(output[i]);
+		
+
+	}
+
+}
