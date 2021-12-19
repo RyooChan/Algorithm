@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MyClass {
+public class Main {
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
         
@@ -19,20 +19,21 @@ public class MyClass {
         vol[S] = 0;
         
         for(int i=1; i<N+1; i++){
+			List<Integer> changer = new ArrayList<>();
             for(int j=0; j<M+1; j++){
                 if(vol[j]==i-1){
-                    System.out.println(vol[j]);
                     int minus = j-change[i-1];
                     int plus = j+change[i-1];
                     
                     if(minus>=0){
-                        vol[minus] = i; 
+                        changer.add(minus);
                     }
                     if(plus<=M){
-                        vol[plus] = i;
+                        changer.add(plus);
                     } 
                 }
             }
+            for(int k : changer) vol[k] = i;
         }
         
         for(int i=0; i<M+1; i++){
@@ -43,3 +44,5 @@ public class MyClass {
       
     }
 }
+
+// 해설 https://hello-backend.tistory.com/92
