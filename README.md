@@ -5,50 +5,66 @@
 
 - BF, DFS, BFS, greedy, 이분탐색, DP, 백트래킹, 구현
 - 목표는 하루에 하나씩 풀기
-- 최소 실버1 이상
-- 5개 BF 풀기
+- 최소 실버1 이상 (골드5 이상 위주로)
+- 7개 BF 풀기
     - [X] [20529](https://github.com/RyooChan/Algorithm/blob/main/java/BOJ20529.java)
     - [X] [16987](https://github.com/RyooChan/Algorithm/blob/main/java/BOJ16987.java)
     - [X] [18428](https://github.com/RyooChan/Algorithm/blob/main/java/BOJ18428.java)
     - [X] [15661](https://github.com/RyooChan/Algorithm/blob/main/java/BOJ15661.java)
+    - [X] [7492](https://github.com/RyooChan/Algorithm/blob/main/java/BOJ7490.java)
     - [ ] -
-- 5개 DFS 풀기
+    - [ ] -
+- 7개 DFS 풀기
     - [ ] - 
     - [ ] -
     - [ ] -
     - [ ] -
     - [ ] -
-- 5개 BFS 풀기
+    - [ ] -
+    - [ ] -
+- 7개 BFS 풀기
     - [ ] -
     - [ ] -
     - [ ] -
     - [ ] -
     - [ ] -
-- 5개 greedy 풀기
+    - [ ] -
+    - [ ] -
+- 7개 greedy 풀기
     - [ ] -
     - [ ] -
     - [ ] -
     - [ ] -
     - [ ] -
-- 5개 이분탐색 풀기
+    - [ ] -
+    - [ ] -
+- 7개 이분탐색 풀기
     - [ ] -
     - [ ] -
     - [ ] -
     - [ ] -
     - [ ] -
-- 5개 DP 풀기
+    - [ ] -
+    - [ ] -
+- 7개 DP 풀기
     - [ ] -
     - [ ] -
     - [ ] -
     - [ ] -
     - [ ] -
-- 5개 백트래킹 풀기
+    - [ ] -
+    - [ ] -
+- 7개 백트래킹 풀기
     - [ ] -
     - [ ] -
     - [ ] -
     - [ ] -
     - [ ] -
-- 5개 구현 풀기
+    - [ ] -
+    - [ ] -
+- 7개 구현 풀기
+    - [ ] -
+    - [ ] -
     - [ ] -
     - [ ] -
     - [ ] -
