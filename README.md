@@ -16,7 +16,7 @@
     - [X] [2116](https://github.com/RyooChan/Algorithm/blob/main/java/BOJ2116.java)
 - 7개 DFS 풀기
     - [X] [1068](https://github.com/RyooChan/Algorithm/blob/main/java/BOJ1068.java)
-    - [ ] -
+    - [X] [1245](https://github.com/RyooChan/Algorithm/blob/main/java/BOJ1245.java)
     - [ ] -
     - [ ] -
     - [ ] -
