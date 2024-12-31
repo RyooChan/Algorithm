@@ -19,7 +19,7 @@
     - [X] [1245](https://github.com/RyooChan/Algorithm/blob/main/java/BOJ1245.java)
     - [X] [13023](https://github.com/RyooChan/Algorithm/blob/main/java/BOJ13023.java)
     - [X] [1240](https://github.com/RyooChan/Algorithm/blob/main/java/BOJ1240.java)
-    - [ ] -
+    - [X] [16174](https://github.com/RyooChan/Algorithm/blob/main/java/BOJ16174.java)
     - [ ] -
     - [ ] -
 - 7개 BFS 풀기
